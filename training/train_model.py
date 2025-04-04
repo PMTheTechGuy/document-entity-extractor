@@ -14,7 +14,11 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-header = logging.FileHandler("logs/train_model.log")
+# Ensure correct path is always passed
+base_dir = os.path.dirname(os.path.dirname(__file__)) # go up from traning/ to root
+file_path = os.path.join(base_dir, "logs", "train_model.log")
+
+header = logging.FileHandler(file_path, encoding="utf-8")
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 header.setFormatter(formatter)
 logger.addHandler(header)

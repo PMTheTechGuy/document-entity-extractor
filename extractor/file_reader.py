@@ -7,6 +7,7 @@ import pdfplumber
 import docx
 import logging
 
+# Setup logging
 logger = logging.getLogger(__name__)
 
 def read_pdf(file_path):

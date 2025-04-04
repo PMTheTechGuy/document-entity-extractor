@@ -28,6 +28,7 @@ output/
 input_files/
 input_files/Archive/
 
+
 # Custom trained models and binary data
 *.spacy
 training/training_data.spacy

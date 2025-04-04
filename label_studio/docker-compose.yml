@@ -1,0 +1,13 @@
+
+services:
+  label_studio:
+    image: heartexlabs/label-studio:latest
+    container_name: label_studio
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/label-studio/data
+    environment:
+      - LABEL_STUDIO_USERNAME=admin
+      - LABEL_STUDIO_PASSWORD=admin
+    restart: unless-stopped
