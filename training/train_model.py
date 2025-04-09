@@ -50,7 +50,7 @@ def train_custom_ner():
                     example = Example.from_dict(doc, annotations)
                     nlp.update([example], drop=0.3, sgd=optimizer)
         # Save the model to disk
-        model_dir = "custom_ner_model"
+        model_dir = "custom_ner_person_model"
         os.makedirs(model_dir, exist_ok=True)
         nlp.to_disk(model_dir)
         logger.info(f"✅ Custom NER model saved to: {model_dir}/")

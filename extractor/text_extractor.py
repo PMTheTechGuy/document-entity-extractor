@@ -24,7 +24,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 # Resolve absolute path to the custom trained model
-model_path = os.path.join(os.path.dirname(__file__), "..", "training", "custom_ner_model")
+model_path = os.path.join(os.path.dirname(__file__), "..", "training", "custom_ner_person_model")
 
 try:
     nlp = spacy.load(model_path)

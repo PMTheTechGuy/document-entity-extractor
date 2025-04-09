@@ -6,7 +6,8 @@
 
 import spacy
 from spacy.tokens import DocBin
-from training.training_data import TRAIN_DATA
+from training.training_data import TRAIN_DATA # Training data using labelStudio
+from training.name_data.training.synthetic_name_data import SYNTHETIC_TRAIN_DATA # data built using datasets from online and synthetic sentences.
 import logging
 import os
 
@@ -33,7 +34,7 @@ def build_spacy_docbin(output_path="../training/training_data.spacy"):
     nlp = spacy.blank("en")
     doc_bin = DocBin()
 
-    for text, annotations in TRAIN_DATA:
+    for text, annotations in SYNTHETIC_TRAIN_DATA:
         doc = nlp.make_doc(text)
         ents = []
 

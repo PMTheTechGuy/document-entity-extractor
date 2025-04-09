@@ -19,7 +19,7 @@ load_dotenv()
 # Define input/output folder paths from environment variables
 INPUT_FOLDER = os.getenv("INPUT_FOLDER")
 OUTPUT_FOLDER = os.getenv("OUTPUT_FOLDER")
-OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "extracted_data2.xlsx")
+OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "extracted_data3.xlsx")
 
 def main():
     logger.info(f"Scanning folder: {INPUT_FOLDER}")
