@@ -13,7 +13,7 @@ logger = getLogger(__name__)
 
 # Config
 NAME_DIR = Path("names")
-OUTPUT_DIR = Path("training/synthetic_name_data.py")
+OUTPUT_DIR = Path("training_data/synthetic_name_data.py")
 SURNAME_DB = Path("clean_names/clean_surname.db")
 
 # Template that stores the structure for training the model
@@ -174,7 +174,7 @@ if __name__ == "__main__":
     first_names = load_first_names(NAME_DIR)
     last_names = load_last_names(SURNAME_DB)
     print(f"✅ First names: {len(first_names)}, Last names: {len(last_names)}")
-    synthetic_examples = generate_training_data(first_names, last_names, all_templates, limit=100000)
+    synthetic_examples = generate_training_data(first_names, last_names, all_templates, limit=1000)
     save_training_data(synthetic_examples, OUTPUT_DIR)
     print("✅ Synthetic name data generation completed.")
 

@@ -3,20 +3,30 @@
 # Purpose: This module uses a trained spaCy NER model (or falls back to a default one)
 #          to extract names, emails, and organizations from raw text.
 # ──────────────────────────────────────────────────────────────────────────────
+
+
 from dotenv import load_dotenv
 from utils.post_process import clean_entities
+from pathlib import Path
 import logging
 import re
 import spacy
 import os
 
+# Load dev variables
+load_dotenv()
+
 # Set up logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-log_dir = os.path.join(os.path.dirname(__file__), "..", "logs")
-os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, "text_extractor.log")
+# Ensure correct path is always passed
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+LOG_DIR = PROJECT_ROOT / os.getenv("LOG_DIR")
+os.makedirs(LOG_DIR, exist_ok=True)
+log_file = os.path.join(LOG_DIR, "text_extractor.log")
 
 file_handler = logging.FileHandler(log_file, encoding="utf-8")
 formatter = logging.Formatter('%(asctime)s [%(levelname)s]: %(message)s')
@@ -24,15 +34,16 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 # Resolve absolute path to the custom trained model
-model_path = os.path.join(os.path.dirname(__file__), "..", "training", "custom_ner_person_model")
+MODEL_PATH = PROJECT_ROOT / os.getenv("MODEL_PATH")
 
 try:
-    nlp = spacy.load(model_path)
+    nlp = spacy.load(MODEL_PATH)
     logger.info("✅ Loaded custom NER model.")
 except Exception as e:
     logger.error("⚠️ Failed to load custom model:", e)
     nlp = spacy.load("en_core_web_sm")
     logger.info("🔁 Falling back to spaCy default model.")
+
 
 def extract_info(text):
     """

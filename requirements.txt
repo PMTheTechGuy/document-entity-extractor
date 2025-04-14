@@ -1,5 +1,5 @@
 python-dotenv~=1.0.1
-pandas
+pandas~=2.2.3
 openpyxl
 spacy~=3.8.4
 pdfplumber~=0.11.5
@@ -7,3 +7,23 @@ python-docx~=1.1.2
 
 fpdf~=1.7.2
 Faker~=37.0.2
+djangorestframework~=3.15.2
+Django~=5.1.7
+celery~=5.4.0
+dj-rest-auth~=2.2.8
+django-filter~=24.3
+environs~=9.5.0
+drf-yasg~=1.21.10
+protobuf~=5.29.4
+furl~=2.1.4
+django-allauth~=0.52.0
+pydantic~=2.10.6
+typing_extensions~=4.12.2
+chardet~=4.0.0
+pyexcel~=0.7.2
+seqeval~=1.2.2
+filetype~=1.2.0
+botocore~=1.37.19
+requests~=2.32.3
+psycopg2-binary~=2.9.10
+scikit-learn~=1.6.1

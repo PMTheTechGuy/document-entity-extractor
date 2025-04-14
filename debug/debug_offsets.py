@@ -1,5 +1,6 @@
 import spacy
 from training.training_data import TRAIN_DATA
+from training.name_data.training_data.paragraph_training_data import TRAIN_DATA_PARAGRAPH
 
 nlp = spacy.blank("en")
 
@@ -13,5 +14,8 @@ def show_token_boundaries(text):
 # show_token_boundaries("Samantha Lee interned at NASA and graduated from MIT.")
 # show_token_boundaries("Peter Holtmann collaborated with ESA and Ariane Group.")
 
-for userStr, ent in TRAIN_DATA:
+# for userStr, ent in TRAIN_DATA:
+#     show_token_boundaries(userStr)
+
+for userStr, ent in TRAIN_DATA_PARAGRAPH:
     show_token_boundaries(userStr)

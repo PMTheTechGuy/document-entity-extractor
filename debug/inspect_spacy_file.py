@@ -4,7 +4,7 @@ from spacy.tokens import DocBin
 
 # Ensure correct path is always passed
 base_dir = os.path.dirname(os.path.dirname(__file__)) # go up from debug/ to root
-file_path = os.path.join(base_dir, "training", "training_data.spacy")
+file_path = os.path.join(base_dir, "training", "training_dataset/train_data.spacy")
 
 # Load your binary training data
 doc_bin = DocBin().from_disk(file_path)

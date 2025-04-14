@@ -13,6 +13,9 @@ venv/
 ENV/
 *.env
 
+# Archive files
+*.Archive
+
 # Log files
 logs/
 *.log
@@ -31,7 +34,7 @@ input_files/Archive/
 
 # Custom trained models and binary data
 *.spacy
-training/training_data.spacy
+training/training_dataset/training_data.spacy
 models/
 custom_model/
 custom_ner_model/

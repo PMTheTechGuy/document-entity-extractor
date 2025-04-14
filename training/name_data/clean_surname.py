@@ -4,7 +4,7 @@ import sqlite3
 
 from psycopg2 import connect
 
-from training.name_data.generat_synthetic_names import load_names
+# from training.name_data.generat_synthetic_names import load_last_names
 
 # Define file path
 names_2010_xlsx = Path("names/Names_2010Census_Top1000.xlsx")

@@ -10,16 +10,20 @@ from extractor.text_extractor import extract_info
 from utils.file_handler import get_all_files
 from utils.export_excel import export_to_excel
 from dotenv import load_dotenv
+from pathlib import Path
 from utils.logger import logger
 import os
 
 # Load environment variables
 load_dotenv()
 
+# Ensure correct path is always passed
+PROJECT_ROOT = Path(__file__).resolve().parent
+
 # Define input/output folder paths from environment variables
-INPUT_FOLDER = os.getenv("INPUT_FOLDER")
-OUTPUT_FOLDER = os.getenv("OUTPUT_FOLDER")
-OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "extracted_data3.xlsx")
+INPUT_FOLDER = os.path.join(PROJECT_ROOT, os.getenv("INPUT_FOLDER"))
+OUTPUT_FOLDER = os.path.join(PROJECT_ROOT, os.getenv("OUTPUT_FOLDER"))
+OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "custom_person_model_extracted_data.xlsx")
 
 def main():
     logger.info(f"Scanning folder: {INPUT_FOLDER}")

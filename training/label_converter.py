@@ -4,30 +4,31 @@
 #          to spaCy training format and append to training_data.py
 # ────────────────────────────────────────────────────────────────
 
+from dotenv import load_dotenv
 import json
 import shutil
 import os
 from pathlib import Path
 import logging
 
+# Load enviroment variables
+load_dotenv(verbose=True)
+
+# Ensure correct path is always passed
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+LOG_DIR = PROJECT_ROOT / os.getenv("LOG_DIR")
+INPUT_DIR = PROJECT_ROOT / os.getenv("LABEL_STUDIO_LOG_DIR")
+ARCHIVE_DIR = PROJECT_ROOT / os.getenv("LABEL_STUDIO_LOG_DIR_ARCHIVE")
+OUTPUT_PATH = os.getenv("SPACY_FILE_NAME")
+file_path = os.path.join(LOG_DIR, "train_model.log")
+
 # Setup logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-# Ensure correct path is always passed
-base_dir = os.path.dirname(os.path.dirname(__file__)) # go up from traning/ to root
-file_path = os.path.join(base_dir, "logs", "train_model.log")
-
 header = logging.FileHandler(file_path, encoding="utf-8")
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 header.setFormatter(formatter)
 logger.addHandler(header)
-
-# Base paths
-BASE_DIR = Path(__file__).resolve().parent.parent
-INPUT_DIR = BASE_DIR / "label_studio" / "data" / "export"
-ARCHIVE_DIR = INPUT_DIR / "archive"
-OUTPUT_PATH = BASE_DIR / "training" / "training_data.py"
 
 ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -84,7 +85,6 @@ def append_to_training_file(entries):
             f.write("]\n")
 
     logger.info(f"✅ Added {len(entries)} entries to {OUTPUT_PATH.name}.")
-
 
 def process_all_json():
     all_files = list(INPUT_DIR.glob("*.json"))

@@ -6,6 +6,7 @@
 import re
 import os
 import logging
+from pathlib import Path
 import sys
 
 from dotenv import load_dotenv
@@ -14,7 +15,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Create the logs directory if it doesn't exist
-log_dir = os.getenv("LOG_DIR")
+# Ensure correct path is always passed
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+log_dir = PROJECT_ROOT / os.getenv("LOG_DIR")
 os.makedirs(log_dir, exist_ok=True)
 
 # Setup logging configuration
@@ -38,7 +41,7 @@ VALID_ACRONYMS = {
 }
 
 # Common filler or noise words to exclude from entities
-NOISE_WORDS = {"and", "or", "of", "the", "in", "on", "to", "with", "a", "an", "BA", "AS", " • ", "GPA", "Scale", " - "}
+NOISE_WORDS = {"and", "or", "of", "the", "in", "on", "to", "with", "a", "an", "BA", "AS", "•", "GPA", "Scale", " - "}
 
 
 def is_valid_acronym(word):
