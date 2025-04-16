@@ -23,7 +23,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 # Define input/output folder paths from environment variables
 INPUT_FOLDER = os.path.join(PROJECT_ROOT, os.getenv("INPUT_FOLDER"))
 OUTPUT_FOLDER = os.path.join(PROJECT_ROOT, os.getenv("OUTPUT_FOLDER"))
-OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "custom_person_model_extracted_data.xlsx")
+OUTPUT_FILE = os.path.join(OUTPUT_FOLDER, "GPT_extracted_data.xlsx")
 
 def main():
     logger.info(f"Scanning folder: {INPUT_FOLDER}")
