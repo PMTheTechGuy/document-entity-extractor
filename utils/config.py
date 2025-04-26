@@ -1,3 +1,8 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Author: Paul-Michael Smith
+# Purpose: Manages the environment variable that allows switching between the SpaCy model and the OpenAI model (using an API key).
+# ──────────────────────────────────────────────────────────────────────────────
+
 import os
 from dotenv import load_dotenv
 

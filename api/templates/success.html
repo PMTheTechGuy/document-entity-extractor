@@ -34,6 +34,18 @@
         a:hover {
             background-color: #2563eb;
         }
+        #reupload_button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #ff7e97;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;;
+        }
+        #reupload_button:hover {
+            background-color: #f10730;
+        }
     </style>
 </head>
 <body>
@@ -41,6 +53,7 @@
         <h2>✅ Extraction Complete!</h2>
         <p>Your file has been processed. Click below to download the results.</p>
         <a href="{{ download_url }}" download>Download Excel File</a>
+        <a id="reupload_button" href="/">Upload Another File</a>
     </div>
 </body>
 </html>

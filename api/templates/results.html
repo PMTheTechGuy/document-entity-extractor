@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extraction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .download-link {
+            margin-top: 2rem;
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .download-link:hover {
+            background-color: #2563eb;
+        }
+
+        #reupload-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #ff7e97;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;;
+        }
+        #reupload-link:hover {
+            background-color: #f10730;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Entities Extracted</h2>
+
+        <h3>Names:</h3>
+        <ul>
+            {% for name in names[:5] %}
+                <li>{{ name }}</li>
+            {% else %}
+                <li><i>None found</i></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Emails:</h3>
+        <ul>
+            {% for email in emails[:5] %}
+                <li>{{ email }}</li>
+            {% else %}
+                <li><i>None found</i></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Organizations:</h3>
+        <ul>
+            {% for org in orgs[:5] %}
+                <li>{{ org }}</li>
+            {% else %}
+                <li><i>None found</i></li>
+            {% endfor %}
+        </ul>
+
+        <a class="download-link" href="{{ download_url }}" download>Download Excel</a>
+        <a id="reupload-link" href="/">Upload Another File</a>
+    </div>
+</body>
+</html>

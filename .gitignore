@@ -11,7 +11,10 @@ __pycache__/
 env/
 venv/
 ENV/
-*.env
+
+# Ignore real env config
+.env
+!*.example
 
 # Archive files
 *.Archive
@@ -31,6 +34,12 @@ output/
 input_files/
 input_files/Archive/
 
+# Label studio
+label_studio/
+
+# Local use
+/main.py
+debug
 
 # Custom trained models and binary data
 *.spacy
@@ -38,6 +47,7 @@ training/training_dataset/training_data.spacy
 models/
 custom_model/
 custom_ner_model/
+training
 
 # IDE and editor files
 .vscode/
@@ -49,3 +59,6 @@ Thumbs.db
 
 # Installer logs
 pip-log.txt
+
+# CI/CD or GitHub workflow stuff (if added later)
+.github/

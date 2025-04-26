@@ -59,6 +59,10 @@
             background-color: #2563eb;
         }
 
+        #loading {
+            margin: 0 auto;
+        }
+
         @media (max-width: 480px) {
             .container {
                 margin: 1rem;
@@ -78,10 +82,21 @@
 <body>
     <div class="container">
         <h1>Upload a Document</h1>
-        <form action="/upload/" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".pdf,.docx,.txt" required>
+        <form action="/upload/" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <input type="file" name="files" multiple accept=".pdf,.docx,.txt" required>
             <button type="submit">Extract Entities</button>
+            <div>
+                <progress id="loading" style="display: none; margin-top:15px">
+                    <span>⏳ Processing... Please wait.</span>
+                </progress>
+            </div>
+
         </form>
     </div>
+<script>
+    function showLoading() {
+        document.getElementById('loading').style.display = 'flex';
+    }
+</script>
 </body>
 </html>
