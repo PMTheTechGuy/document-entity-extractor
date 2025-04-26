@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🧠 AIDataExtractionTool
 
 This tool extracts **names**, **emails**, and **organization names** from large batches of files (PDF, DOCX, TXT) using NLP — ideal for analyzing business documents, reports, forms, and more.
@@ -169,3 +170,6 @@ Freelance Automation Developer
 🔗 Upwork Profile
 🔗 GitHub
 🔗 LinkedIn
+=======
+# document-entity-extractor
+>>>>>>> 291eec73b058823c1a92a9e9d0c403089e5394b3

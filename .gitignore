@@ -40,6 +40,8 @@ label_studio/
 # Local use
 /main.py
 debug
+README.md
+CHECKLIST.MD
 
 # Custom trained models and binary data
 *.spacy
