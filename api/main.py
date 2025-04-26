@@ -23,7 +23,6 @@ import csv
 
 # Custom modules
 from extractor.text_extractor import extract_info
-from training.label_converter import PROJECT_ROOT
 from utils.export_excel import export_to_excel
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
