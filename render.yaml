@@ -1,10 +1,12 @@
 services:
   - type: web
-    name: aiextractor
-    runtime: python
+    name: ai-data-extraction-tool
+    env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn api.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: OUTPUT_FOLDER
         value: output
-    plan: free
+      - key: INPUT_FOLDER
+        value: input_files
