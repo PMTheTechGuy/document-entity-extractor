@@ -37,9 +37,9 @@ logger.addHandler(file_handler)
 #     nlp = spacy.load(MODEL_PATH)
 #     logger.info("✅ Loaded custom NER model from %s", MODEL_PATH)
 # except Exception:
-    logger.exception("⚠️ Failed to load custom model. Falling back to default.")
-    nlp = spacy.load("en_core_web_sm")
-    logger.info("🔁 Loaded spaCy default model.")
+logger.exception("⚠️ Failed to load custom model. Falling back to default.")
+nlp = spacy.load("en_core_web_sm")
+logger.info("🔁 Loaded spaCy default model.")
 
 
 def extract_info_spacy(text: str) -> dict:
