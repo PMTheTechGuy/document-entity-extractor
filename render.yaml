@@ -10,3 +10,5 @@ services:
         value: output
       - key: INPUT_FOLDER
         value: input_files
+      - key: LOG_DIR
+        value: logs
