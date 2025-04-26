@@ -31,12 +31,12 @@ file_handler.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s]: %(mess
 logger.addHandler(file_handler)
 
 # ─────── Load spaCy model ───────
-MODEL_PATH = PROJECT_ROOT / os.getenv("MODEL_PATH", "training/custom_ner_model")
+# MODEL_PATH = PROJECT_ROOT / os.getenv("MODEL_PATH", "training/custom_ner_model")
 
-try:
-    nlp = spacy.load(MODEL_PATH)
-    logger.info("✅ Loaded custom NER model from %s", MODEL_PATH)
-except Exception:
+# try:
+#     nlp = spacy.load(MODEL_PATH)
+#     logger.info("✅ Loaded custom NER model from %s", MODEL_PATH)
+# except Exception:
     logger.exception("⚠️ Failed to load custom model. Falling back to default.")
     nlp = spacy.load("en_core_web_sm")
     logger.info("🔁 Loaded spaCy default model.")
