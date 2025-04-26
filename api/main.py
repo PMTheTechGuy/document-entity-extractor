@@ -20,13 +20,12 @@ import json
 import asyncio
 import time
 import csv
-import sys
 
 # Custom modules
 from extractor.text_extractor import extract_info
 from utils.export_excel import export_to_excel
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+# sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # Load environment
 load_dotenv()
