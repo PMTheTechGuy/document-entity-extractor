@@ -20,6 +20,7 @@ import json
 import asyncio
 import time
 import csv
+import sys
 
 # Custom modules
 from extractor.text_extractor import extract_info
