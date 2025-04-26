@@ -17,7 +17,7 @@ load_dotenv()
 # Create the logs directory if it doesn't exist
 # Ensure correct path is always passed
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-log_dir = PROJECT_ROOT / os.getenv("LOG_DIR")
+log_dir = PROJECT_ROOT / os.getenv("LOG_DIR", "logs")
 os.makedirs(log_dir, exist_ok=True)
 
 # Setup logging configuration
