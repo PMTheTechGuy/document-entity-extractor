@@ -34,7 +34,7 @@ app = FastAPI()
 # Logging setup
 PROJECT_ROOT = Path(__file__).resolve().parent
 templates = Jinja2Templates(directory=str(PROJECT_ROOT / "templates"))
-OUTPUT_FOLDER = PROJECT_ROOT.parent / os.getenv("OUTPUT_FOLDER")
+OUTPUT_FOLDER = PROJECT_ROOT.parent / os.getenv("OUTPUT_FOLDER", "output")
 OUTPUT_FOLDER.mkdir(exist_ok=True)
 LOG_FOLDER = PROJECT_ROOT.parent / "logs"
 LOG_FOLDER.mkdir(exist_ok=True)
