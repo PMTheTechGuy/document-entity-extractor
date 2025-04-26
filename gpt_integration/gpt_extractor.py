@@ -11,7 +11,7 @@ from openai import OpenAI
 
 # Load API key from .env
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPEN_AI_API_KEYS"))
+client = OpenAI(api_key=os.getenv("OPEN_AI_API_KEY"))
 
 def extract_entities_with_gpt(text):
     prompt = f"""
