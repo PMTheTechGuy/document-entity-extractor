@@ -1,67 +1,118 @@
 # AI Data Extraction Tool
 
-An AI-powered document entity extractor that allows users to upload multiple files (PDF, Word, or text), extract entities (Names, Emails, Organizations), and download structured Excel outputs.
-
-Built with FastAPI + GPT (optional) + Pandas.
-
----
-
-## 🚀 Features
-- Upload one or multiple documents at once
-- Extract Names, Emails, and Organizations
-- View a preview of extracted entities
-- Download structured Excel (.xlsx) output
-- Auto-cleanup old files every hour
-- Optional GPT-powered extraction for higher accuracy
-- Background file cleanup and result logging to CSV
+🚀 Upload documents → Extract Names, Emails, and Organizations → Download structured Excel results instantly.  
+Built with **FastAPI**, **Pandas**, and optional **GPT-enhanced** extraction.  
+Deployed live on **Render**.
 
 ---
 
-## 📂 Project Structure
+## ✨ Features
+
+- ✅ Upload PDF, DOCX, and TXT documents
+- ✅ Extract **Names**, **Emails**, and **Organizations**
+- ✅ Multi-file uploads supported (combines results into one Excel)
+- ✅ Clean and organized Excel file download (`.xlsx`)
+- ✅ Supports both **local entity extraction** and **GPT-enhanced** extraction
+- ✅ Automatic fallback if custom model is missing
+- ✅ Deployed online via [Render](https://render.com/)
+
+---
+
+## 📸 Screenshots
+
+### Upload Page
+![Upload Page](link-to-upload-screenshot)
+
+### Extraction Results Page
+![Results Page](link-to-results-screenshot)
+
+---
+
+## 🚀 Live Demo
+
+> 🟢 [Visit the Live App Here](https://ai-data-extraction-tool.onrender.com/)  
+
+---
+
+## ⚙️ Technologies Used
+
+- Python 3.11
+- FastAPI
+- Uvicorn
+- Pandas
+- spaCy
+- OpenAI API (optional GPT-enhancement)
+- openpyxl (for Excel export)
+
+---
+
+## 🛠 Local Development Setup
+
+Clone the repository:
 
 ```bash
-AIDataExtractionTool/
-├── api/
-│
-├── main.py
-│
-├── templates/
-│ └── utils/, temp_uploads/, etc.
-├── extractor/
-│ └── text_extractor.py, file_reader.py
-├── output/ (auto-generated)
-├── logs/ (auto-generated)
-├── .env.example
-├── requirements.txt
-├── render.yaml
+git clone https://github.com/PMTheTechGuy/document-entity-extractor.git
+cd document-entity-extractor
 ```
----
-
-## ⚙️ Installation
+Install dependencies:
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/ai-data-extraction-tool.git
-cd ai-data-extraction-tool
-
-# Set up virtual environment (optional but recommended)
-python -m venv .venv
-source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
+```
 
-# Copy .env.example to .env
+Set up your environment variables:
+
+Create a `.env` file based on `.env.example`.
+
+```bash
 cp .env.example .env
 ```
+Start the server locally:
+
+```bash
+uvicorn api.main:app --reload
+```
 
 ---
 
+## 🌍 Deployment
 
-## 🏃 Run Locally
+This app is deployed on Render.
 
-```bash
-uvicorn api.main:app --reload --port 8000
+You can deploy your own version in one click:
+
+---
+## 📦 Folder Structure
+
+```php
+api/             # FastAPI backend
+├── templates/   # HTML templates (upload form, results page)
+├── static/      # Static files (optional)
+├── temp_uploads/ # Temporary uploaded files
+├── temp_outputs/ # Temporary generated outputs
+utils/           # Helper modules (export, logging, etc.)
+extractor/       # File reading and entity extraction
+gpt_integration/ # GPT-enhanced extraction
+output/          # Exported Excel files
+logs/            # Application logs
 ```
-Then open your browser at http://localhost:8000
+---
 
+### 🙌 Acknowledgements
+-[FastAPI](https://fastapi.tiangolo.com/)
+
+-[spaCy](https://spacy.io/)
+
+-[OpenAI](https://openai.com/)
+
+-[Render](https://render.com/)
+
+---
+
+## 📫 Contact
+
+Built with passion by [PM The Tech Guy](https://github.com/PMTheTechGuy).
+
+Feel free to connect or suggest ideas!
+
+---
