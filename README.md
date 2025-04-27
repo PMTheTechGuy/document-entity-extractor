@@ -21,10 +21,10 @@ Deployed live on **Render**.
 ## 📸 Screenshots
 
 ### Upload Page
-<img src = live-Demo-Images/Upload_PageWith_item.png width = 675 height = 675 alt = Upload Page>
+<img src = api/static/Upload_PageWith_item.png width = 675 height = 675 alt = Upload Page>
 
 ### Extraction Results Page
-<img src = live-Demo-Images/ExtractionResultsPage.png width = 675 height = 675 alt = Results Page>
+<img src = api/static/ExtractionResultsPage.png width = 675 height = 675 alt = Results Page>
 
 ---
 
