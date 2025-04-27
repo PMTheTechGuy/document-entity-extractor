@@ -87,7 +87,7 @@ You can deploy your own version in one click:
 ```php
 api/             # FastAPI backend
 ├── templates/   # HTML templates (upload form, results page)
-├── static/      # Static files (optional)
+├── static/      # Static files
 ├── temp_uploads/ # Temporary uploaded files
 ├── temp_outputs/ # Temporary generated outputs
 utils/           # Helper modules (export, logging, etc.)
