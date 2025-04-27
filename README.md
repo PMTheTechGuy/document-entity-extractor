@@ -21,10 +21,10 @@ Deployed live on **Render**.
 ## 📸 Screenshots
 
 ### Upload Page
-![Upload Page](Live-Demo-Images/Upload_Page_-_With_item.png)
+![Upload Page](live-Demo-Images/Upload_PageWith_item.png)
 
 ### Extraction Results Page
-![Results Page](link-to-results-screenshot)
+![Results Page](live-Demo-Images/ExtractionResultsPage.png)
 
 ---
 
