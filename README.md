@@ -21,10 +21,10 @@ Deployed live on **Render**.
 ## 📸 Screenshots
 
 ### Upload Page
-![Upload Page](live-Demo-Images/Upload_PageWith_item.png)
+<img src = live-Demo-Images/Upload_PageWith_item.png width = 675 height = 675 alt = Upload Page>
 
 ### Extraction Results Page
-![Results Page](live-Demo-Images/ExtractionResultsPage.png)
+<img src = live-Demo-Images/ExtractionResultsPage.png width = 675 height = 675 alt = Results Page>
 
 ---
 
@@ -99,13 +99,13 @@ logs/            # Application logs
 ---
 
 ### 🙌 Acknowledgements
--[FastAPI](https://fastapi.tiangolo.com/)
+- [FastAPI](https://fastapi.tiangolo.com/)
 
--[spaCy](https://spacy.io/)
+- [spaCy](https://spacy.io/)
 
--[OpenAI](https://openai.com/)
+- [OpenAI](https://openai.com/)
 
--[Render](https://render.com/)
+- [Render](https://render.com/)
 
 ---
 
@@ -113,6 +113,6 @@ logs/            # Application logs
 
 Built with passion by [PM The Tech Guy](https://github.com/PMTheTechGuy).
 
-Feel free to connect or suggest ideas!
+Please don't hesitate to reach out or share your ideas!
 
 ---
