@@ -21,7 +21,7 @@ Deployed live on **Render**.
 ## 📸 Screenshots
 
 ### Upload Page
-![Upload Page](link-to-upload-screenshot)
+![Upload Page](Live-Demo-Images/Upload_Page_-_With_item.png)
 
 ### Extraction Results Page
 ![Results Page](link-to-results-screenshot)
