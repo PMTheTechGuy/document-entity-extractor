@@ -91,7 +91,7 @@ This app supports two extraction modes:
 
 By default, the app will fall back to spaCy if no OpenAI key is provided and the `USE_GPT_EXTRACTION` is set to `False`.
 
-Setting Up OpenAI GPT Extraction (Optional)
+### Setting Up OpenAI GPT Extraction (Optional)
 
 #### 1. In your `.env` file, add your OpenAI API Key:
 
