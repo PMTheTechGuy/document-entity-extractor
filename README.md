@@ -93,14 +93,14 @@ By default, the app will fall back to spaCy if no OpenAI key is provided and the
 
 ### Setting Up OpenAI GPT Extraction (Optional)
 
-#### 1. In your `.env` file, add your OpenAI API Key:
+*1. In your `.env` file, add your OpenAI API Key:*
 
 ```env
 OPENAI_API_KEY=your-real-openai-api-key-here
 ```
-#### 2. Save the `.env` file.
+*2. Save the `.env` file.*
 
-#### 3. Restart the FastAPI server:
+*3. Restart the FastAPI server:*
 
 ```bash
 uvicorn api.main:app --reload
@@ -171,3 +171,6 @@ Crafted with dedication by
 Please don't hesitate to reach out or share your ideas!
 
 ---
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
