@@ -22,16 +22,18 @@ import csv
 from extractor.text_extractor import extract_info
 from utils.export_excel import export_to_file
 
-# sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # Load environment
 load_dotenv()
 
-# Lifespan setup
+# Define directories
 PROJECT_ROOT = Path(__file__).resolve().parent
 OUTPUT_FOLDER = PROJECT_ROOT.parent / os.getenv("OUTPUT_FOLDER", "output")
 LOG_FOLDER = PROJECT_ROOT.parent / "logs"
 
+# ──────────────────────────────────────────────────────────────────────────────
+# Function to log each file upload's entity extraction summary into a CSV file
+# ──────────────────────────────────────────────────────────────────────────────
 def log_extraction(filename: str, name_count: int, email_count: int, org_count: int):
     log_filename = f"extractions_{datetime.now().date()}.csv"
     log_path = LOG_FOLDER / log_filename
@@ -50,7 +52,10 @@ def log_extraction(filename: str, name_count: int, email_count: int, org_count: 
             org_count
         ])
 
-
+# ──────────────────────────────────────────────────────────────────────────────
+# App lifecycle context: Initializes folders, warns if API key is missing,
+# and starts background file cleanup.
+# ──────────────────────────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logging.info("🚀 Starting app...")
@@ -68,15 +73,20 @@ async def lifespan(app: FastAPI):
     yield
 
     print("Lifespan: cleanup complete.")
+
+# Initialize FastAPI with custom lifespan
 app = FastAPI(lifespan=lifespan)
 
+# Setup template rendering for HTML pages
 templates = Jinja2Templates(directory=str(PROJECT_ROOT / "templates"))
 
-# 🧹 Background cleanup settings
+# 🧹 Cleanup configuration
 CLEANUP_INTERVAL_SECONDS = 600  # every 10 min
 FILE_EXPIRATION_SECONDS = 3600  # 1 hour
 
-# Background file cleanup
+# ──────────────────────────────────────────────────────────────────────────────
+# Background task to periodically delete old output files
+# ──────────────────────────────────────────────────────────────────────────────
 async def cleanup_old_files():
     while True:
         now = time.time()
@@ -89,12 +99,16 @@ async def cleanup_old_files():
                     file.unlink()
         await asyncio.sleep(CLEANUP_INTERVAL_SECONDS)
 
-# Home page
+# ──────────────────────────────────────────────────────────────────────────────
+# Route: GET "/" — Displays the upload form - Homepage
+# ──────────────────────────────────────────────────────────────────────────────
 @app.get("/", response_class=HTMLResponse)
 async def upload_form(request: Request):
     return templates.TemplateResponse("upload_form.html", {"request": request})
 
-# Upload & process
+# ──────────────────────────────────────────────────────────────────────────────
+# Route: POST "/upload/" — Handles file upload and extraction logic
+# ──────────────────────────────────────────────────────────────────────────────
 @app.post("/upload/")
 async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
     try:
@@ -102,6 +116,7 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
         extracted_rows = []
 
         for file in files:
+            # Allowed file types
             allowed_types = [
                 "application/pdf",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -110,17 +125,21 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
             if file.content_type not in allowed_types:
                 continue
 
+            # Save file to output folder
             saved_path = OUTPUT_FOLDER / f"uploaded_{timestamp}_{file.filename}"
             with open(saved_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
 
+            # Skip empty files
             if os.path.getsize(saved_path) == 0:
                 continue
 
+            # Read and extract entities
             from extractor.file_reader import read_file
             text = read_file(str(saved_path))
             result = extract_info(text)
 
+            # Append extracted data
             extracted_rows.append({
                 "Filename": file.filename,
                 "Source Type": Path(file.filename).suffix,
@@ -129,6 +148,7 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
                 "Organizations": ", ".join(result.get("organization", []))
             })
 
+            # Log this extraction
             log_extraction(
                 filename=file.filename,
                 name_count=len(result.get("person", [])),
@@ -139,6 +159,7 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
         if not extracted_rows:
             raise ValueError("No valid or extractable files uploaded.")
 
+        # Export results
         output_base = OUTPUT_FOLDER / f"entities_combined_{timestamp}"
         excel_path = output_base.with_suffix(".xlsx")
         csv_path = output_base.with_suffix(".csv")
@@ -146,6 +167,7 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
         export_to_file(extracted_rows, str(excel_path), format="xlsx")
         export_to_file(extracted_rows, str(csv_path), format="csv")
 
+        # Prepare summary JSON
         summary_data = {
             "files_processed": len(files),
             "names_extracted": sum(len(row["Names"].split(", ")) for row in extracted_rows),
@@ -159,6 +181,7 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
         with open(result_file, 'w', encoding='utf-8') as f:
             json.dump(summary_data, f)
 
+        # Redirect to results page
         base_filename = output_base.stem
         return RedirectResponse(url=f"/results/{base_filename}", status_code=303)
 
@@ -168,7 +191,10 @@ async def handle_upload(request: Request, files: List[UploadFile] = File(...)):
             "error_message": str(e)
         }, status_code=400)
 
-# Result preview
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Route: GET "/results/{filename}" — Displays results summary on webpage
+# ──────────────────────────────────────────────────────────────────────────────
 @app.get("/results/{filename}", response_class=HTMLResponse)
 async def show_results(request: Request, filename: str):
     json_path = OUTPUT_FOLDER / f"{filename}.json"
@@ -205,7 +231,10 @@ async def show_results(request: Request, filename: str):
         }
     })
 
-# Download link
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Route: GET "/download/{filename}" — Serves Excel file download
+# ──────────────────────────────────────────────────────────────────────────────
 @app.get("/download/{filename}")
 async def download_file(request: Request, filename: str):
     file_path = OUTPUT_FOLDER / filename
@@ -225,6 +254,3 @@ async def download_file(request: Request, filename: str):
         media_type="application/octet-stream",
         headers={"Content-Disposition": f"attachment; filename={filename}"}
     )
-# if file_path.exists():
-#         return FileResponse(path=file_path, filename=filename)
-#     return {"error": "File not found."}
