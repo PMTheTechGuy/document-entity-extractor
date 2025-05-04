@@ -13,7 +13,7 @@ Deployed live on **Render**.
 - ✅ Multi-file uploads supported (combines results into one Excel)
 - ✅ Clean and organized Excel file download (`.xlsx`)
 - ✅ Supports both **local entity extraction** and **GPT-enhanced** extraction
-- ✅ Automatic fallback if custom model is missing
+- ✅ Automatic fallback if the custom model is missing
 - ✅ Deployed online via [Render](https://render.com/)
 
 ---
@@ -72,14 +72,69 @@ Start the server locally:
 ```bash
 uvicorn api.main:app --reload
 ```
+If you encounter an issue loading the application on `HTTP://localhost:8000`.
+
+Quit the application using `Ctrl + C` and start the server on port `8001`.
+
+```bash
+uvicorn api.main:app --reload --port 8001
+```
+---
+
+## 🧠 OpenAI Key Setup (Optional for GPT Extraction)
+
+This app supports two extraction modes:
+
+- 🧠 GPT-enhanced extraction (more accurate, slower, uses OpenAI API)
+
+- ⚡ Local spaCy model extraction (faster, free, no external API calls)
+
+By default, the app will fall back to spaCy if no OpenAI key is provided and the `USE_GPT_EXTRACTION` is set to `False`.
+
+### Setting Up OpenAI GPT Extraction (Optional)
+
+*1. In your `.env` file, add your OpenAI API Key:*
+
+```env
+OPENAI_API_KEY=your-real-openai-api-key-here
+```
+*2. Save the `.env` file.*
+
+*3. Restart the FastAPI server:*
+
+```bash
+uvicorn api.main:app --reload
+```
+
+- ✅ If a key is provided, the app will automatically use GPT for extractions.
+- ✅ If no key is provided or an API error occurs, the app will fall back to using spaCy.
+
+---
+
+## ⚙️ Controlling GPT Extraction Mode
+
+In your `.env` file, you can control whether the app uses GPT or local spaCy extraction:
+```
+USE_GPT_EXTRACTION=True
+```
+- ✅ True → Use GPT extraction (requires valid OpenAI API key)
+
+- ✅ False → Force local spaCy extraction, even if API key is present
+
+Restart the server after changing the `.env` settings.
+```
+uvicorn api.main:app --reload
+```
+
+The app will detect this automatically at runtime.
 
 ---
 
 ## 🌍 Deployment
 
-This app is deployed on Render.
+This app is deployed on [Render](https://render.com/).
 
-You can deploy your own version in one click:
+You can deploy your version in one click.
 
 ---
 ## 📦 Folder Structure
@@ -88,8 +143,6 @@ You can deploy your own version in one click:
 api/             # FastAPI backend
 ├── templates/   # HTML templates (upload form, results page)
 ├── static/      # Static files
-├── temp_uploads/ # Temporary uploaded files
-├── temp_outputs/ # Temporary generated outputs
 utils/           # Helper modules (export, logging, etc.)
 extractor/       # File reading and entity extraction
 gpt_integration/ # GPT-enhanced extraction
@@ -130,8 +183,13 @@ logs/            # Application logs
 
 ## 📫 Contact
 
-Built with passion by [PM The Tech Guy](https://github.com/PMTheTechGuy).
+Crafted with dedication by 
+[PM The Tech Guy](https://github.com/PMTheTechGuy).
+
 
 Please don't hesitate to reach out or share your ideas!
 
 ---
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
