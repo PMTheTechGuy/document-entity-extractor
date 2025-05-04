@@ -98,6 +98,25 @@ logs/            # Application logs
 ```
 ---
 
+## 📦 Features
+
+- **Multi-file Upload**: Upload one or more `.pdf`, `.docx`, or `.txt` files for processing.
+- **Entity Extraction**: Automatically identifies and extracts:
+  - People (names)
+  - Emails
+  - Organizations
+- **Results Summary**: Displays a summary of total files processed, and the number of names, emails, and organizations found.
+- **CSV & Excel Export**: Download extracted data in `.csv` or `.xlsx` format.
+- **Auto Cleanup**: Temporary files that are older than one hour will be automatically deleted.
+- **Error Handling**: User interface for handling invalid uploads, unsupported file types, and extraction failures.
+---
+
+## 🚧 Coming Soon
+- Daily upload limits per user or IP (via database tracking)
+- Admin dashboard to review processed data
+- File size limit configuration in .env
+
+---
 ### 🙌 Acknowledgements
 - [FastAPI](https://fastapi.tiangolo.com/)
 

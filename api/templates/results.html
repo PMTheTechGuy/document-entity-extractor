@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Extraction Results</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +52,7 @@
             background-color: #2563eb;
         }
 
-        #reupload-link {
+        .reupload-link {
             display: inline-block;
             margin-top: 2rem;
             padding: 0.6rem 1.2rem;
@@ -61,7 +61,7 @@
             text-decoration: none;
             border-radius: 6px;;
         }
-        #reupload-link:hover {
+        .reupload-link:hover {
             background-color: #f10730;
         }
 
@@ -69,7 +69,15 @@
 </head>
 <body>
     <div class="container">
+
         <h2>Entities Extracted</h2>
+
+        <p>
+            ✅ {{ summary.files }} file{{ 's' if summary.files > 1 else '' }} processed |
+            {{ summary.names }} names,
+            {{ summary.emails }} emails,
+            {{ summary.orgs }} organizations extracted.
+        </p>
 
         <h3>Names:</h3>
         <ul>
@@ -99,7 +107,8 @@
         </ul>
 
         <a class="download-link" href="{{ download_url }}" download>Download Excel</a>
-        <a id="reupload-link" href="/">Upload Another File</a>
+        <a class="download-link" href="/download/{{ filename.replace('.xlsx', '.csv') }}">Download CSV</a>
+        <a class="reupload-link" href="/">Upload Another File</a>
     </div>
 </body>
 </html>
