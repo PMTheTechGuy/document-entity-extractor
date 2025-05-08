@@ -24,8 +24,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Usage: for logs to appear in terminal for development
-console = logging.StreamHandler()
-console.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s — %(levelname)s — %(message)s')
-console.setFormatter(formatter)
-logger.addHandler(console)
+# console = logging.StreamHandler()
+# console.setLevel(logging.INFO)
+# formatter = logging.Formatter('%(asctime)s — %(levelname)s — %(message)s')
+# console.setFormatter(formatter)
+# logger.addHandler(console)

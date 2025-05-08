@@ -8,7 +8,7 @@ Purpose: Main execution script for extracting names, emails, and organizations
 from extractor.file_reader import read_file
 from extractor.text_extractor import extract_info
 from utils.file_handler import get_all_files
-from utils.export_excel import export_to_excel
+from utils.export_excel import export_to_file
 from datetime import datetime
 from utils.config import use_gpt_extraction
 from dotenv import load_dotenv
@@ -115,7 +115,7 @@ def main():
             logger.error(f"Error processing {file}: {e}")
 
     # Export extracted data to Excel
-    export_to_excel(results, OUTPUT_FILE)
+    export_to_file(results, OUTPUT_FILE)
     logger.info(f"✅ Extraction complete. Output saved to {OUTPUT_FILE}")
 
 if __name__ == "__main__":

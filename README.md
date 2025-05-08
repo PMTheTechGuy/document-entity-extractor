@@ -143,6 +143,7 @@ You can deploy your version in one click.
 api/             # FastAPI backend
 ├── templates/   # HTML templates (upload form, results page)
 ├── static/      # Static files
+├── db/          # Database
 utils/           # Helper modules (export, logging, etc.)
 extractor/       # File reading and entity extraction
 gpt_integration/ # GPT-enhanced extraction
