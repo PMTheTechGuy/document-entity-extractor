@@ -36,14 +36,17 @@ input_files/Archive/
 
 # Label studio
 label_studio
+label_studio_export/
+
 
 # Local use
 /main.py
+/test.py
 debug
 README.md
 CHECKLIST.MD
 
-# Custom trained models and binary data
+# Custom-trained models and binary data
 *.spacy
 training/training_dataset/training_data.spacy
 models/
@@ -64,3 +67,12 @@ pip-log.txt
 
 # CI/CD or GitHub workflow stuff (if added later)
 .github/
+
+# Database
+*.sqlite3
+*.db
+
+
+
+
+
