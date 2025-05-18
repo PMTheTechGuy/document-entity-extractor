@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9fafb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.result-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 600px;
+}
+
+.error-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #f87171;
+}
+
+h2 {
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+textarea,
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+
+button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2563eb;
+    transform: scale(1.05);
+}
+
+.download-btn {
+    margin-top: 2rem;
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.download-btn:hover {
+    background-color: #2563eb;
+    transform: scale(1.02);
+}
+
+.reupload-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #ff7e97;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;;
+}
+
+.reupload-btn:hover {
+    background-color: #f10730;
+    transform: scale(1.02);
+}
+
+.feedback-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2563eb; /* Tailwind blue-600 */
+    color: white;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+
+.feedback-btn:hover {
+    background-color: #1e40af; /* Tailwind blue-800 */
+    transform: scale(1.1);
+}
+
+#error {
+    color: #dc2626;
+}

@@ -5,14 +5,14 @@
 #          entity counts, and user IP.
 # ──────────────────────────────────────────────────────────────────────────────
 
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
+from pathlib import Path
 from dotenv import load_dotenv
 
 # ──────── Custom modules ────────
 from utils.config import DATABASE_URL
-
 load_dotenv()
 
 # Create the SQLAlchemy engine
@@ -36,6 +36,13 @@ class ExtractionLog(Base):
     org_count = Column(Integer, default=0)
     user_ip = Column(String, nullable=True)
 
+class Feedback(Base):
+    __tablename__: str = "feedback"
+
+    id = Column(Integer, primary_key=True, index=True)
+    message = Column(Text, nullable=False)
+    rating = Column(Integer, nullable=True)
+    submitted_at = Column(DateTime, default=datetime.now())
 
 # Create the table
 Base.metadata.create_all(bind=engine)

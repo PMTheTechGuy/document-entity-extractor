@@ -41,7 +41,7 @@ label_studio_export/
 
 # Local use
 /main.py
-/test.py
+/Test/test.py
 debug
 README.md
 CHECKLIST.MD

@@ -3,86 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>AI File Extractor</title>
-    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
-    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico?v=1">
+    <link rel="stylesheet" href="/static/css/upload_form.css">
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico?v=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f3f4f6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            color: #111827;
-        }
-
-        input[type="file"] {
-            width: 100%;
-            padding: 0.6rem;
-            margin: 1rem 0;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-        }
-
-        button {
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #2563eb;
-        }
-
-        #loading {
-            margin: 0 auto;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.25rem;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-    </style>
 </head>
+<header>
+</header>
+{#<div class="alert-container">#}
+{#{% if request.query_params.get('status') == 'success' %}#}
+{#<div class="alert success">✅ Entities extracted successfully!</div>#}
+{#{% elif request.query_params.get('status') == 'error' %}#}
+{#<div class="alert error">❌ Failed to extract entities. Please try again.</div>#}
+{#{% endif %}#}
+{#</div>#}
 <body>
-    <div class="container">
+    <div class="upload-container">
+        {% if error_message %}
+            <div class="Alert error">⚠️ {{ error_message }}</div>
+        {% endif %}
         <h1>Upload a Document</h1>
         <form action="/upload/" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
             <input type="file" name="files" multiple accept=".pdf,.docx,.txt" required>
@@ -92,13 +31,26 @@
                     <span>⏳ Processing... Please wait.</span>
                 </progress>
             </div>
-
         </form>
     </div>
+    <a href="/feedback" class="feedback-btn" title="Give Feedback">📝</a>
+
 <script>
     function showLoading() {
         document.getElementById('loading').style.display = 'flex';
     }
+
+    setTimeout(function() {
+        const alert = document.querySelector('.alert.error');
+        if (alert) {
+            alert.style.display = 'none';
+        }
+    }, 5000); // Hide after 5 seconds
 </script>
 </body>
+
+<footer>
+
+
+</footer>
 </html>

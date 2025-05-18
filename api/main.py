@@ -4,6 +4,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, Request, Depends
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -19,11 +20,13 @@ import csv
 
 # ──────── Custom modules ────────
 from utils.logger import logger
-from utils.config import CLEANUP_INTERVAL_SECONDS, FILE_EXPIRATION_SECONDS, OUTPUT_FOLDER, LOG_FOLDER
+from utils.config import CLEANUP_INTERVAL_SECONDS, FILE_EXPIRATION_SECONDS, OUTPUT_FOLDER, LOG_FOLDER, PROJECT_ROOT
 from utils.file_cleanup import cleanup_old_files
 from db.database import SessionLocal, engine, Base
 from routes.upload_routes import router as upload_routes
 from routes.results_routes import router as results_routes
+from routes.feedback_routes import router as feedback_routes
+from routes.upload_history import router as upload_history_routes
 
 # ──────── Load .env variables ────────
 load_dotenv()
@@ -49,10 +52,17 @@ async def lifespan(app: FastAPI):
     yield
 
     logger.info("✅ Lifespan: cleanup complete.")
+    yield
+    logger.info("🛑 App is shutting down cleanly")
 
 # Initialize FastAPI with a custom lifespan
 app = FastAPI(lifespan=lifespan)
 
+# Mount static file
+app.mount("/static", StaticFiles(directory=PROJECT_ROOT / "api" / "static" ), name="static")
+
 # ──────── Include Modular route difinitions ────────
 app.include_router(upload_routes)
 app.include_router(results_routes)
+app.include_router(feedback_routes)
+app.include_router(upload_history_routes)

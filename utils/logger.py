@@ -5,17 +5,19 @@ Purpose: Main logging script handling configuration of the application.
 """
 
 import logging
-import os
+from utils.config import LOG_FOLDER
+from pathlib import Path
 
-# Create logs folder if not exists
-os.makedirs("logs", exist_ok=True)
+# Create a logs folder if none exists
+Path(LOG_FOLDER).mkdir(parents=True, exist_ok=True)
+LOG_FILE = LOG_FOLDER / "app.log"
 
 # Configure the logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s]: %(message)s",
     handlers = [
-        logging.FileHandler("logs/app.log", encoding="utf-8"),
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
         logging.StreamHandler()
     ]
 )

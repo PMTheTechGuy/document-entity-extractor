@@ -3,46 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
-    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #fff5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            border: 1px solid #f87171;
-        }
-        h2 {
-            color: #dc2626;
-        }
-        a {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.6rem 1.2rem;
-            background-color: #ef4444;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-        a:hover {
-            background-color: #b91c1c;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico?v=1">
+{#    <style>#}
+{#        body {#}
+{#            font-family: Arial, sans-serif;#}
+{#            background: #fff5f5;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#            height: 100vh;#}
+{#        }#}
+{#        .error-container {#}
+{#            background: white;#}
+{#            padding: 2rem;#}
+{#            border-radius: 10px;#}
+{#            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);#}
+{#            text-align: center;#}
+{#            border: 1px solid #f87171;#}
+{#        }#}
+{#        h2 {#}
+{#            color: #dc2626;#}
+{#        }#}
+{#        a {#}
+{#            display: inline-block;#}
+{#            margin-top: 1rem;#}
+{#            padding: 0.6rem 1.2rem;#}
+{#            background-color: #ef4444;#}
+{#            color: white;#}
+{#            text-decoration: none;#}
+{#            border-radius: 6px;#}
+{#        }#}
+{#        a:hover {#}
+{#            background-color: #b91c1c;#}
+{#        }#}
+{#    </style>#}
 </head>
 <body>
-    <div class="container">
-        <h2>⚠️ {{ error_message }}</h2>
-        <p>Something went wrong during processing.</p>
-        <a href="/">Go Back</a>
+    <div class="error-container">
+        <h2 id="error">Upload Failed</h2>
+        <p> {{ error_message }}</p>
+        <a href="/" class="back-link">← Try Again</a>
     </div>
+<a href="/feedback" class="feedback-btn" title="Give Feedback">📝</a>
 </body>
 </html>

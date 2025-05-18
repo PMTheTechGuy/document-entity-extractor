@@ -1,0 +1,34 @@
+<!-- templates/view_feedback.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Feedback</title>
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico?v=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>📬 Submitted Feedback</h2>
+
+        {% if feedback_entries %}
+            <ul>
+                {% for fb in feedback_entries %}
+                    <li style="margin-bottom: 1rem;">
+                        <strong>Submitted:</strong> {{ fb.submitted_at }}<br>
+                        <strong>Rating:</strong> {{ fb.rating or "N/A" }}<br>
+                        <strong>Message:</strong><br>
+                        <blockquote>{{ fb.message }}</blockquote>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p><i>No feedback has been submitted yet.</i></p>
+        {% endif %}
+
+        <a href="/" class="reupload-btn">← Back to Upload</a>
+    <a href="/feedback" class="feedback-btn" title="Give Feedback">📝</a>
+    </div>
+</body>
+</html>

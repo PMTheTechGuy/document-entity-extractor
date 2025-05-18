@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Upload History</title>
+    <link rel="icon" type="image/x-icon" href="/static/icon/favicon.ico">
+    <link rel="stylesheet" href="/static/css/admin.css">
+
+    <style>
+
+        .upload_history-table td {
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+<div class="upload_history-container">
+    <h2>🧩 Upload History</h2>
+<div class="upload_history-table-container">
+    {% if logs %}
+        <table class="upload_history-table">
+            <thead>
+            <tr>
+                <th>Filename</th>
+                <th>Name Count</th>
+                <th>Email Count</th>
+                <th>Org Count</th>
+                <th>Upload Time</th>
+                <th>IP Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in logs %}
+                <tr>
+                <td>
+                    {% if entry.filename.endswith(".pdf") %}
+                        📑
+                    {% elif entry.filename.endswith(".docx") %}
+                        📃
+                    {% elif entry.filename.endswith(".xlsx") %}
+                        📊
+                    {% elif entry.filename.endswith(".txt") %}
+                        📝
+                    {% else %}
+                        💾
+                    {% endif %}
+                    {{ entry.filename }}
+                </td>
+                    <td>{{ entry.name_count  }}</td>
+                    <td>{{ entry.email_count  }}</td>
+                    <td>{{ entry.org_count}}</td>
+                    <td>{{ entry.upload_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ entry.user_ip }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="?page={{ page - 1 }}&limit={{ limit }}">← Previous</a>
+            {% endif %}
+            {% if has_next %}
+                <a href="?page={{ page + 1 }}&limit={{ limit }}">Next →</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No upload entries were found.</p>
+    {% endif %}
+
+
+    <a href="/" class="back-link">← Back to Upload</a>
+<a href="/feedback" class="feedback-btn" title="Give Feedback">📝</a>
+</div>
+</body>
+</html>
