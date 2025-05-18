@@ -72,7 +72,9 @@ pip-log.txt
 *.sqlite3
 *.db
 
-
+# Test folder
+Test/
+test/
 
 
 
